@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Details</title>
+</head>
+<body>
+<h2>Employee Details</h2>
+<form name="employeeForm" id="employeeForm">
+    First name: <input type="text" name="firstname"><br>
+
+    Last name: <input type="text" name="lastname"><br>
+
+    Gender:
+    <input type="radio" name="gender" value="male"> Male
+    <input type="radio" name="gender" value="female"> Female<br>
+
+    Employee ID: <input type="text" name="empid"><br>
+
+    Designation: <input type="text" name="designation"><br>
+
+    Phone Number: <input type="text" name="phno"><br><br>
+
+    <input type="button" value="Submit" onclick="submitForm()">
+</form>
+
+<script>
+    function submitForm() {
+        // Get all form data
+        var firstname = document.getElementsByName('firstname')[0].value;
+        var lastname = document.getElementsByName('lastname')[0].value;
+        var gender = document.querySelector('input[name="gender"]:checked').value;
+        var empid = document.getElementsByName('empid')[0].value;
+        var designation = document.getElementsByName('designation')[0].value;
+        var phno = document.getElementsByName('phno')[0].value;
+
+        // Create an object to hold the data
+        var employeeData = {
+            firstname: firstname,
+            lastname: lastname,
+            gender: gender,
+            empid: empid,
+            designation: designation,
+            phno: phno
+        };
+
+        // Send data to Android using the interface
+        Android.saveEmployeeData(JSON.stringify(employeeData));
+    }
+</script>
+</body>
+</html>
